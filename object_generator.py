@@ -51,7 +51,7 @@ class ObjectGenerator:
                 return obj_id
 
     def __define_type_of_obj_4_tree(self, obj_type, auth_model_json):
-        """"""
+        """Specifies which element of the tree can be an object of type obj_type """
         if not self.__can_object_establish_rel(obj_type["name"], auth_model_json):
             return "leaf"
         if self.__is_object_tree_root(obj_type, auth_model_json):
