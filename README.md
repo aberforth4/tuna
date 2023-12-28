@@ -1,6 +1,3 @@
-![photo1703782570](https://github.com/aberforth4/tuna/assets/155059882/52c0095a-5c85-402e-a08f-68c72e16231b)
-
-
 Tuna is a tool that can help you test [OpenFGA](https://openfga.dev/) authorization models. Such models describe how various objects should relate to each other, but where to get objects themselves? 
 It's Tuna's turn; it takes a DSL authorization model and generates users and objects to fill your model. 
 You can load them into an OpenFGA instance and perform various tests, such as stress tests, to be sure that your authorization model and OpenFGA instance deployment fit your needs.
