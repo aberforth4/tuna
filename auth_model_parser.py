@@ -3,7 +3,7 @@ import re
 
 class AuthModelParser():
     def parse_model_from_file(self, f) -> dict:
-        """Конвертирует модель авторизации на dsl в список json объектов"""
+        """Converts the DSL authorization model to a list of json objects"""
         dsl_model = f.read()
         f.close()
         dsl_model = dsl_model.replace("\n", "")
@@ -17,7 +17,7 @@ class AuthModelParser():
         return json_model
 
     def __parse_single_type(self, dsl_str: str) -> dict:
-        """Конвертирует dsl описание объекта в json"""
+        """Converts dsl object description to json"""
         dsl_str = dsl_str.split("relations")
         single_type = {
             "name": dsl_str[0].replace(" ", ""),
@@ -34,7 +34,7 @@ class AuthModelParser():
         return single_type
 
     def __parse_single_relation(self, rel: str) -> dict:
-        """Парсит отношение объекта в json формат"""
+        """Parses the object's relation in json format"""
         relation = {
             "name": "",
             "can_relate_with": []
@@ -46,8 +46,8 @@ class AuthModelParser():
             exit()
         relation["name"] = relation_name
         rel = rel[rel_name_index + 2:]
-        # сначала смотрим, есть в описании отношения прямые указания на типы
-        # которые могут установить такое отношение. Они указаны в []
+        # First, let's see if there are any direct references to types in the description of the relationship # that can establish such a relationship. They are listed in []
+        # They are listed in []
         direct_relationship = re.findall(r'\[(.*)\]', rel)
         if len(direct_relationship) == 1:
             relation["can_relate_with"] += self.__parse_direct_relationship(direct_relationship[0])
@@ -85,7 +85,7 @@ class AuthModelParser():
         return relation
 
     def __parse_direct_relationship(self, rel: str) -> list:
-        """Парсит прямые отношения объекта в json формат"""
+        """Parses direct object relations in json format"""
         rel = rel.split(",")
         direct_rels = []
         for obj_type in rel:
