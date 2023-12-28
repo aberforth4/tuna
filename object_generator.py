@@ -20,11 +20,42 @@ class ObjectGenerator:
         auth_model_json = auth_model_json["types"]
         roots = []
         tuples = []
+        nodes = []
+        leaves = []
         for obj in auth_model_json:
-            if self.__define_type_of_obj_4_tree(obj, auth_model_json) == "root":
-                roots.append(obj)
-        for root in roots:
-            tuples += self.__set_up_tree_root(root, auth_model_json)
+            match self.__define_type_of_obj_4_tree(obj, auth_model_json):
+                case "root":
+                    roots.append(obj)
+                case "node":
+                    nodes.append(obj)
+                case "leaf":
+                    leaves.append(obj)
+        # no roots in model
+        if len(roots) == 0:
+            if len(nodes) == 0:
+                # only leaves in the model
+                for leaf in leaves:
+                    leaf_id = self.__generate_id()
+                    for rel in leaf["relations"]:
+                        for can_relate_with in rel["can_relate_with"]:
+                            if can_relate_with["type"] == "direct":
+                                if can_relate_with["object"] == self.__user_obj_name:
+                                    for i in range(self.leaf_num):
+                                        tuples.append(
+                                            {
+                                                "user": f'{self.__user_obj_name}:{self.__generate_id()}',
+                                                "relation": rel["name"],
+                                                "object": f'{leaf["name"]}:{leaf_id}'
+                                            }
+                                        )
+            else:
+                for node in nodes:
+                    # use node as root
+                    tuples += self.__set_up_tree_root(node, auth_model_json)
+        else:
+            for root in roots:
+                tuples += self.__set_up_tree_root(root, auth_model_json)
+
         tuples += self.__set_up_rel_specific_rels(tuples, auth_model_json)
         return tuples
 
