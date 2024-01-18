@@ -1,0 +1,47 @@
+[
+    {
+        "user": "user:56589795",
+        "relation": "owner",
+        "object": "folder:85394926"
+    },
+    {
+        "user": "user:40315682",
+        "relation": "viewer",
+        "object": "folder:85394926"
+    },
+    {
+        "user": "user:26770832",
+        "relation": "owner",
+        "object": "folder:48930125"
+    },
+    {
+        "user": "user:87085325",
+        "relation": "viewer",
+        "object": "folder:48930125"
+    },
+    {
+        "user": "user:19096712",
+        "relation": "owner",
+        "object": "doc:96332680"
+    },
+    {
+        "user": "user:40668025",
+        "relation": "viewer",
+        "object": "doc:96332680"
+    },
+    {
+        "user": "user:64815549",
+        "relation": "member",
+        "object": "group:98894544"
+    },
+    {
+        "user": "user:86283266",
+        "relation": "member",
+        "object": "group:96700067"
+    },
+    {
+        "user": "user:45341901",
+        "relation": "member",
+        "object": "group:46036324"
+    }
+]

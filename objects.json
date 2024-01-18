@@ -1,0 +1,27 @@
+[
+    {
+        "user": "folder:85394926",
+        "relation": "parent",
+        "object": "folder:48930125"
+    },
+    {
+        "user": "folder:48930125",
+        "relation": "parent",
+        "object": "doc:96332680"
+    },
+    {
+        "user": "group:98894544#member",
+        "relation": "viewer",
+        "object": "folder:85394926"
+    },
+    {
+        "user": "group:96700067#member",
+        "relation": "viewer",
+        "object": "folder:48930125"
+    },
+    {
+        "user": "group:46036324#member",
+        "relation": "viewer",
+        "object": "doc:96332680"
+    }
+]
