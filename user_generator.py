@@ -26,17 +26,17 @@ class UserGenerator:
         """Generates all possible user to objects relation based on model, objects, and
         direct user to object relations"""
         auth_model_json = auth_model_json["types"]
+        all_users_tuples = []
         objects = self.__make_objects_list(tuples)
         for obj in objects:
             if obj.find("#") != -1:
                 usr_tpls = self.__find_users_4_rel_sp_relation(obj, user_tuples)
                 for usr_tpl in usr_tpls:
-                    user_tuples += self.__create_rels_4_sp_related_usr(usr_tpl, obj, tuples, auth_model_json)
-        user_indirect_rels = []
+                    all_users_tuples += self.__create_rels_4_sp_related_usr(usr_tpl, obj, tuples, auth_model_json)
         for usr_tpl in user_tuples:
-            user_indirect_rels += self.__get_user_rel_tuples(usr_tpl, tuples, auth_model_json)
-        user_tuples += user_indirect_rels
-        return user_tuples
+            all_users_tuples += self.__get_user_rel_tuples(usr_tpl, tuples, auth_model_json)
+        all_users_tuples += user_tuples
+        return all_users_tuples
 
     def make_public_objects(self, user_tuples: list, obj_tuples: list, auth_model_json: dict) -> list:
         """If it is possible by model make 1 or half of objects of each type publicly accessible."""
